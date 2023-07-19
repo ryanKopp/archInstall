@@ -1,0 +1,16 @@
+alacritty
+feh
+firefox
+i3-wm
+i3blocks
+network-manager-applet
+noto-fonts-cjk
+noto-fonts-emoji
+pamixer
+pavucontrol
+pulseaudio
+tmux
+ttf-liberation
+xorg-server
+xorg-xinit
+xorg-xinput
