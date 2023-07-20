@@ -5,3 +5,10 @@
 - `git clone https://github.com/ryankopp/archinstall.git`
 - `cd archInstall && ./stage1 <boot part> <root part>`
 - follow the prompts
+
+
+# Fixing nvim after first boot
+
+- `nvim .config/nvim/lua/ryan/packer.lua`
+- `:so`
+- `:PackerSync` twice - some never go the first time
