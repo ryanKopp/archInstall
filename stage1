@@ -28,7 +28,6 @@ read -p "Good internet connection? [Y/n]" yn
 case $yn in
     [Nn]* ) ;;
     * ) sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 25/' /etc/pacman.conf;;
-        #echo "ParallelDownloads = 25" >> /etc/pacman.conf;;
 esac
 
 #first installation, most important packages and install others later
