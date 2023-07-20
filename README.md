@@ -3,5 +3,5 @@
 - Set up disk partitioning
 - `pacman -Sy archlinux-keyring git`
 - git clone https://github.com/ryankopp/archinstall.git 
-- stage1 <boot part> <root part>
+- cd archInstall && ./stage1 <boot part> <root part>
 - follow the prompts
