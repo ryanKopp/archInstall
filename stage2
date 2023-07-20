@@ -92,3 +92,7 @@ pacman --noconfirm -S grub efibootmgr
 #Install grub
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
+
+# Clean up
+cp packageLists/nonEssentialPackages /home/$user/.
+rm -rf packageLists installDotfiles stage2 /home/$user/yay/
