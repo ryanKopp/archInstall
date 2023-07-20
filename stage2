@@ -15,7 +15,9 @@ echo "Defaults editor=/usr/bin/nvim" > /etc/sudoers.d/01-visudo-editor
 
 #pacman tweaks
 #echo "ParallelDownloads = 25" >> /etc/pacman.conf
+sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 25/' /etc/pacman.conf
 #echo "Color" >> /etc/pacman.conf
+sed -i 's/#Color/Color/' /etc/pacman.conf
 
 #Make hostname
 read -p 'Enter hostname: ' hostnm 
@@ -53,7 +55,7 @@ case $yn in
 esac
 
 #Separated package lists in case installing on mobile tether(thanks proprietary drivers)
-read -p "Good Internet? [Y/n]" yn
+read -p "Install rest of packages now? [Y/n]" yn
 case $yn in
     [Nn]* ) ;;
     * ) sudo -u $user yay --noconfirm -S $(cat ./packageLists/full.txt) 
