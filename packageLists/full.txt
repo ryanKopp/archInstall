@@ -12,8 +12,6 @@ nextcloud-client
 npm
 ntfs-3g
 numlockx
-nvidia
-nvidia-settings
 nvim-packer-git
 obsidian
 piavpn-bin
@@ -25,7 +23,6 @@ remmina
 rustup
 scrot
 spotify
-stable-diffusion-ui
 sxiv
 thunar
 tldr

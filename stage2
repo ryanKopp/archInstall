@@ -49,8 +49,8 @@ cd
 read -p "Install i3? [Y/n]" yn
 case $yn in
     [Nn]* ) ;;
-    * ) sudo -u $user yay --noconfirm -S $(cat ./packageLists/gui.txt)        
-        sudo -u $user sh ./installDotfiles
+    * ) sudo -u $user yay --noconfirm -S $(cat /packageLists/gui.txt)        
+        sudo -u $user sh /installDotfiles
         ;;
 esac
 
@@ -58,7 +58,7 @@ esac
 read -p "Install rest of packages now? [Y/n]" yn
 case $yn in
     [Nn]* ) ;;
-    * ) sudo -u $user yay --noconfirm -S $(cat ./packageLists/full.txt) 
+    * ) sudo -u $user yay --noconfirm -S $(cat /packageLists/full.txt) 
         ;;
 esac
 
@@ -74,7 +74,7 @@ esac
 
 read -p "Is this a laptop? [y/N]" yn
 case $yn in
-    [Yy]* ) pacman --noconfirm -S tlp brightnessctl;
+    [Yy]* ) pacman --noconfirm -S tlp brightnessctl acpi;
         ;;
     * ) ;;
 esac

@@ -30,4 +30,8 @@ smbclient # access netspace
 
 qdirstat # graphical storage use 
 
+nvidia
+nvidia-settings
+
+stable-diffusion-ui
 
