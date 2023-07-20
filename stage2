@@ -14,8 +14,8 @@ echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/00-wheel-can-sudo
 echo "Defaults editor=/usr/bin/nvim" > /etc/sudoers.d/01-visudo-editor
 
 #pacman tweaks
-echo "ParallelDownloads = 25" >> /etc/pacman.conf
-echo "Color" >> /etc/pacman.conf
+#echo "ParallelDownloads = 25" >> /etc/pacman.conf
+#echo "Color" >> /etc/pacman.conf
 
 #Make hostname
 read -p 'Enter hostname: ' hostnm 
@@ -36,7 +36,12 @@ echo "Enter password for account $user"
 passwd $user
 
 #install yay
-sudo -u $user git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+#sudo -u $user git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+git clone https://aur.archlinux.org/yay.git /home/$user/yay 
+cd /home/$user/yay
+chown -R $user .
+sudo -u ryan makepkg -si
+cd
 
 #Install i3?
 read -p "Install i3? [Y/n]" yn
