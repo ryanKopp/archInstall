@@ -39,5 +39,7 @@ pacstrap -K /mnt base base-devel linux linux-firmware linux-headers \
 genfstab -U /mnt >> /mnt/etc/fstab
 
 cp ./stage2 /mnt/stage2
+cp -r ./packageLists /mnt/packageLists
+cp ./installDotfiles /mnt/installDotfiles
 
 arch-chroot /mnt/ sh ./stage2
