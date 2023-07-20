@@ -3,7 +3,7 @@
 #first configure disk partitioning, then run this script
 
 if [[ $# != 2 ]]; then
-    echo not enough args: Usage stage2 [/dev/efipart] [/dev/fspart]
+    echo not enough args: Usage stage1 [/dev/efipart] [/dev/fspart]
     exit
 fi
 
