@@ -14,6 +14,7 @@ echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/00-wheel-can-sudo
 echo "Defaults editor=/usr/bin/nvim" > /etc/sudoers.d/01-visudo-editor
 
 #pacman tweaks
+# This is using sed as find and replace, same syntax as vim
 sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 25/' /etc/pacman.conf
 sed -i 's/#Color/Color/' /etc/pacman.conf
 
