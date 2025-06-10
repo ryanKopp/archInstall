@@ -15,7 +15,6 @@ echo "Defaults editor=/usr/bin/nvim" > /etc/sudoers.d/01-visudo-editor
 
 #pacman tweaks
 # This is using sed as find and replace, same syntax as vim
-sed -i 's/#ParallelDownloads = 5/ParallelDownloads = 25/' /etc/pacman.conf
 sed -i 's/#Color/Color/' /etc/pacman.conf
 
 pacman -Sy
@@ -38,15 +37,14 @@ echo "Enter password for account $user"
 passwd $user
 
 #install yay
-#sudo -u $user git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
 git clone https://aur.archlinux.org/yay.git /home/$user/yay 
 cd /home/$user/yay
 chown -R $user .
 sudo -u ryan makepkg -si --noconfirm
 cd
 
-#Install i3?
-read -p "Install i3? [Y/n]" yn
+#Install sway?
+read -p "Install sway? [Y/n]" yn
 case $yn in
     [Nn]* ) ;;
     * ) sudo -u $user yay --noconfirm -S $(cat /packageLists/gui.txt)        
@@ -74,7 +72,7 @@ esac
 
 read -p "Is this a laptop? [y/N]" yn
 case $yn in
-    [Yy]* ) pacman --noconfirm -S tlp brightnessctl acpi;
+    [Yy]* ) pacman --noconfirm -S brightnessctl acpi sof-firmware;
         ;;
     * ) ;;
 esac
