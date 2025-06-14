@@ -23,9 +23,6 @@ pacman -Sy
 read -p 'Enter hostname: ' hostnm 
 echo $hostnm > /etc/hostname
 
-#enable networkmanager
-systemctl enable NetworkManager
-
 #prompt for root password
 echo "pick your root password"
 passwd 
@@ -38,17 +35,19 @@ passwd $user
 
 #install yay
 git clone https://aur.archlinux.org/yay.git /home/$user/yay 
-cd /home/$user/yay
+pushd /home/$user/yay
 chown -R $user .
 sudo -u ryan makepkg -si --noconfirm
-cd
+popd
+
+packageList=""
 
 #Install sway?
 read -p "Install sway? [Y/n]" yn
 case $yn in
     [Nn]* ) ;;
-    * ) sudo -u $user yay --noconfirm -S $(cat /packageLists/gui.txt)        
-        sudo -u $user sh /installDotfiles
+    * ) packageList="${packageList} $(cat /packageLists/gui.txt)"
+        pushd /home/$user; sudo -u $user sh /installDotfiles; popd
         ;;
 esac
 
@@ -56,37 +55,39 @@ esac
 read -p "Install rest of packages now? [Y/n]" yn
 case $yn in
     [Nn]* ) ;;
-    * ) sudo -u $user yay --noconfirm -S $(cat /packageLists/full.txt) 
+    * ) packageList="${packageList} $(cat /packageLists/full.txt)"
         ;;
 esac
 
 #Are we dual booting? 
 read -p "Is this a dual boot installation? [y/N]" yn
 case $yn in
-    [Yy]* ) pacman --noconfirm -S os-prober;
-        echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub;
-        os-prober
+    [Yy]* ) packageList="${packageList} os-prober";
+            echo GRUB_DISABLE_OS_PROBER=false >> /etc/default/grub;
         ;;
     * ) ;;
 esac
 
 read -p "Is this a laptop? [y/N]" yn
 case $yn in
-    [Yy]* ) pacman --noconfirm -S brightnessctl acpi sof-firmware;
+    [Yy]* ) packageList="${packageList} brightnessctl acpi sof-firmware";
         ;;
     * ) ;;
 esac
 
 read -p "Is this an Intel machine? [y/N]" yn
 case $yn in
-    [Yy]* ) pacman --noconfirm -S intel-ucode;
+    [Yy]* ) packageList="${packageList} intel-ucode";
         ;;
-    * )     pacman --noconfirm -S amd-ucode; 
+    * )     packageList="${packageList} amd-ucode";
         ;;
 esac
 
 #get grub downloaded
-pacman --noconfirm -S grub efibootmgr
+sudo -u $user yay -S --noconfirm grub efibootmgr ${packageList}
+
+#enable networkmanager
+systemctl enable NetworkManager
 
 #Install grub
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
