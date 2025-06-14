@@ -5,6 +5,7 @@ grim
 gvfs
 gvfs-mtp
 imv
+networkmanager
 network-manager-applet
 noto-fonts-cjk
 noto-fonts-emoji

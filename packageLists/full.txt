@@ -1,4 +1,4 @@
-7-zip-bin
+7zip
 calibre
 discord
 freerdp
@@ -22,3 +22,7 @@ tmux-plugin-manager
 zathura
 zathura-djvu
 zathura-pdf-mupdf
+polkit
+bash-completion
+man-db
+man-pages
